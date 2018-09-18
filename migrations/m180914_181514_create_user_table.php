@@ -23,7 +23,6 @@ class m180914_181514_create_user_table extends Migration
             'password_reset_token' => $this->string()->unique(),
             'access_token' => $this->string()->unique(),
             'email' => $this->string()->notNull()->unique(),
-
             'status' => $this->smallInteger()->notNull()->defaultValue(User::STATUS_ACTIVE),
             'created_at' => $this->integer()->notNull(),
             'updated_at' => $this->integer()->notNull(),

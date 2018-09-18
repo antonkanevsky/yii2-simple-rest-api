@@ -21,7 +21,7 @@ class News extends AppNews implements Linkable
     public function getLinks()
     {
         return [
-            Link::REL_SELF => Url::to(['api/news/view', 'id' => $this->id], true),
+            Link::REL_SELF => Url::to(['news/view', 'id' => $this->id], true),
         ];
     }
 

@@ -15,7 +15,7 @@ class m180914_200945_create_news_table extends Migration
         $this->createTable('news', [
             'id' => $this->primaryKey()->comment('Идентификатор'),
             'title' => $this->string()->notNull()->comment('Заголовок'),
-            'seo' => $this->string(32)->comment('SEO URL'),
+            'seo' => $this->string(64)->comment('SEO URL'),
             'author_id' => $this->integer()->notNull()->comment('Автор'),
             'html' => $this->text()->notNull()->comment('Содержимое'),
             'status' => $this->smallInteger()->notNull()->comment('Статус'),

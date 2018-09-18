@@ -19,6 +19,10 @@ use yii\behaviors\TimestampBehavior;
  */
 class News extends \yii\db\ActiveRecord
 {
+    const STATUS_ARCHIVED = 0;
+    const STATUS_ADDED = 1;
+    const STATUS_PUBLISHED = 2;
+
     /**
      * {@inheritdoc}
      */
@@ -47,7 +51,7 @@ class News extends \yii\db\ActiveRecord
             [['html'], 'string'],
             [['status', 'created_at', 'updated_at', 'date_published'], 'integer'],
             [['title'], 'string', 'max' => 255],
-            [['seo'], 'string', 'max' => 32],
+            [['seo'], 'string', 'max' => 64],
         ];
     }
 

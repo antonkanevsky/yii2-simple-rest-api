@@ -68,7 +68,7 @@ $config = [
                 [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'api/news',
-                    'except' => 'delete'
+                    'except' => ['delete']
                 ],
             ],
         ],
