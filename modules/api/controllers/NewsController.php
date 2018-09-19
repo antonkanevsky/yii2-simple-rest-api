@@ -40,7 +40,7 @@ class NewsController extends ActiveController
     {
         if ($action === 'update' || $action === 'delete') {
             if ($model->author_id !== Yii::$app->user->id)
-                throw new ForbiddenHttpException(sprintf('You can only %s articles that you\'ve created.', $action));
+                throw new ForbiddenHttpException(sprintf('You can only %s news that you\'ve created.', $action));
         }
     }
 }

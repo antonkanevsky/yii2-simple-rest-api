@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -24,6 +25,16 @@ class News extends \yii\db\ActiveRecord
     const STATUS_PUBLISHED = 2;
 
     /**
+     * Возможные статусы.
+     * @var array
+     */
+    const STATUSES = [
+        self::STATUS_ARCHIVED,
+        self::STATUS_ADDED,
+        self::STATUS_PUBLISHED
+    ];
+
+    /**
      * {@inheritdoc}
      */
     public static function tableName()
@@ -38,6 +49,11 @@ class News extends \yii\db\ActiveRecord
     {
         return [
             TimestampBehavior::className(),
+            [
+                'class' => BlameableBehavior::className(),
+                'createdByAttribute' => 'author_id',
+                'updatedByAttribute' => false,
+            ],
         ];
     }
 
@@ -47,29 +63,12 @@ class News extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'html', 'status', 'created_at', 'updated_at'], 'required'],
+            [['title', 'html', 'status'], 'required'],
             [['html'], 'string'],
             [['status', 'created_at', 'updated_at', 'date_published'], 'integer'],
+            ['status', 'in', 'range' => self::STATUSES],
             [['title'], 'string', 'max' => 255],
             [['seo'], 'string', 'max' => 64],
-        ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function attributeLabels()
-    {
-        return [
-            'id' => 'Идентификатор',
-            'title' => 'Заголовок',
-            'seo' => 'SEO URL',
-            'author_id' => 'Автор',
-            'html' => 'Содержимое',
-            'status' => 'Статус',
-            'created_at' => 'Дата создания',
-            'updated_at' => 'Дата обновления',
-            'date_published' => 'Дата публикации',
         ];
     }
 }
