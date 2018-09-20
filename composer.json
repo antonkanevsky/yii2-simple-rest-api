@@ -52,8 +52,8 @@
     },
     "repositories": [
         {
-            "type": "git",
-            "url": "git@github.com:antonkanevsky/yii2-simple-rest-api.git"
+            "type": "composer",
+            "url": "https://asset-packagist.org"
         }
     ]
 }
